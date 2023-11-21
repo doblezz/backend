@@ -1,0 +1,3 @@
+[build]
+  command = "npm start"
+  publish = "."  # Esto asume que tu archivo principal es index.js en la raíz

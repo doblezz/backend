@@ -1,0 +1,18 @@
+# Node.js
+node_modules/
+
+
+# Archivos generados durante el desarrollo
+*.log
+*.pid
+*.lock
+*.seed
+
+# Archivos de configuración
+.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
