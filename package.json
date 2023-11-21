@@ -14,11 +14,5 @@
   },
   "devDependencies": {
     
-  },
-  "engines": {
-    "node": "14.x"  
-  },
-  "resolutions": {
-    "mime-db": "2.8.0" 
   }
 }
