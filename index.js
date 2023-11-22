@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
+  console.log("Exito init projec...")
   res.send('¡Hola, mundo!');
 });
 
