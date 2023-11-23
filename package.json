@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev":"node index.js",
+    "dev": "node index.js",
     "build": "npx babel --out-dir lib && netlify-lambda build ",
     "start": "nodemon --exec babel-node index.js",
     "test": "echo \"No test specified\" && exit 0"
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.16.4",
+    "mysql2": "^3.6.5",
     "netlify-lambda": "^2.0.10",
     "serverless-http": "^2.7.0",
     "torrent2magnet": "^1.0.0",
