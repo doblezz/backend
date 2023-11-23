@@ -5,12 +5,15 @@ require('dotenv').config();
 const mysql = require('mysql');
 
 // Configura la conexión a la base de datos utilizando las variables de entorno
-const connection = mysql.createConnection({
+const dbConfig = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-});
+};
+
+// Crea y exporta la conexión a la base de datos
+const connection = mysql.createConnection(dbConfig);
 
 // Conecta a la base de datos
 connection.connect((err) => {
@@ -21,5 +24,4 @@ connection.connect((err) => {
   }
 });
 
-// Exporta la conexión para que pueda ser utilizada en otros archivos
 module.exports = connection;
