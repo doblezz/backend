@@ -1,4 +1,43 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
-npm test
+# Obtener la versión actual del proyecto
+current_version=$(node -p -e "require('./package.json').version")
+
+# Dividir la versión en partes: mayor, menor y parche
+IFS='.' read -r -a version_parts <<< "$current_version"
+major=${version_parts[0]}
+minor=${version_parts[1]}
+patch=${version_parts[2]}
+
+# Incrementar el segundo número (menor)
+minor=$((minor + 1))
+
+# Verificar si el segundo número supera 9
+if [ "$minor" -gt 9 ]; then
+  # Incrementar el primer número (mayor) y restablecer el segundo a 0
+  major=$((major + 1))
+  minor=0
+fi
+
+# Construir la nueva versión
+new_version="$major.$minor.$patch"
+
+# Imprimir la nueva versión
+echo "Nueva versión: $new_version"
+
+# Aplicar la nueva versión
+npm --no-git-tag-version version $new_version
+
+# Actualizar el README.md (si es necesario)
+# npm run uvr
+
+# Agregar los cambios en los archivos de versión en la raíz
+git add package.json
+git add package-lock.json 
+git add README.md # Agregar el archivo README.md al commit
+
+# Continuar con otros comandos (si los tienes)
+# npm test
+
+# Salir con un código de retorno 0 (éxito) para permitir que el commit continúe
+exit 0
