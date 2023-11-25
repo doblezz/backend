@@ -16,7 +16,6 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.16.4",
-    "husky": "^8.0.3",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "netlify-lambda": "^2.0.10",
@@ -29,6 +28,7 @@
     "@babel/cli": "^7.15.0",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/preset-env": "^7.15.0",
+    "husky": "^8.0.3",
     "nodemon": "^2.0.12"
   },
   "husky": {
@@ -46,4 +46,3 @@
     ]
   }
 }
-
