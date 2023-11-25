@@ -27,10 +27,8 @@ connection.query('SHOW TABLES', (err, results) => {
   connection.end();
 });
 
-app.get('/', (req, res) => {
-  console.log("Éxito al iniciar el proyecto...");
-  res.send('¡Hola, mundo!');
-});
+const apiRouter = require('./router/router');
+app.use('/api', apiRouter);
 
 // Puedes agregar más rutas y lógica según tus necesidades.
 app.listen(port, () => {
