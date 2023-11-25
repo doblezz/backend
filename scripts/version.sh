@@ -1,4 +1,6 @@
 #!/bin/bash
+# Agrega comandos de depuración
+echo "Ejecutando el script de versión..."
 
 # Obtener la versión actual del proyecto
 current_version=$(node -p -e "require('./package.json').version")
