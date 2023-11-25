@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { GetRates, PostLogin } = require("../method/useMethods");
 
+
 // GETS
 router.get("/rates", async (req, res) => {
   try {
