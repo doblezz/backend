@@ -1,7 +1,8 @@
 {
   "name": "backend",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "index.js",
+  "proxy": "https://acqbackend.onrender.com",
   "scripts": {
     "build": "babel src --out-dir lib && netlify-lambda build",
     "start": "node index.js",
