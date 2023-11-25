@@ -6,6 +6,9 @@
     "build": "babel src --out-dir lib && netlify-lambda build",
     "start": "node index.js",
     "test": "echo \"No test specified\" && exit 0",
+    "version": "sh scripts/bump-version.sh",
+    "precommit": "sh scripts/husky.sh && npm run build && npm run start",
+    "prepush": "sh scripts/husky.sh",
     "prepare": "husky install"
   },
   "dependencies": {
