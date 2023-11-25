@@ -7,8 +7,7 @@
     "start": "node index.js",
     "test": "echo \"No test specified\" && exit 0",
     "prepare": "husky install",
-    "precommit": "sh pre-commit.sh",
-    "prepush": "sh pre-push.sh"
+    "version": "bash scripts/version.sh"
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -31,5 +30,15 @@
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/preset-env": "^7.15.0",
     "nodemon": "^2.0.12"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": ["eslint --fix", "git add"]
   }
 }
