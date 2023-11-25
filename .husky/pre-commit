@@ -1,0 +1,34 @@
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Incrementar el tercer número de la versión en package.json
+npm version --commit-hooks false --git-tag-version false patch
+
+# Obtener la versión actual desde package.json
+currentVersion=$(node -p "require('./package.json').version")
+
+# Dividir la versión en partes
+IFS='.' read -r major minor patch <<< "$currentVersion"
+
+# Verificar si el tercer número alcanzó 10
+if [ "$patch" -eq 10 ]; then
+  # Reiniciar el tercer número a 0 y aumentar el segundo número
+  newVersion="$major.$((minor + 1)).0"
+else
+  # Incrementar el tercer número sin cambiar el resto
+  newVersion="$currentVersion"
+fi
+
+# Actualizar la versión en package.json
+npm --no-git-tag-version version "$newVersion"
+
+# Actualizar el README.md
+npm run uvr
+
+# Agregar los cambios en los archivos de versión y README.md
+git add package.json
+git add package-lock.json
+git add README.md
+
+# Continuar con el commit
+exit 0
