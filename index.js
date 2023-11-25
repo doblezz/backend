@@ -11,20 +11,20 @@ require('dotenv').config({ path: envFile });
 const connection = require('./services/utils/db');
 
 app.use(bodyParser.json());
+app.use(express.json());
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 
 // Realiza la consulta a la base de datos
 connection.query('SHOW TABLES', (err, results) => {
   if (err) {
     console.error('Error al obtener la lista de tablas:', err.message);
   } else {
-    console.log('Lista de tablas en la base de datos:');
     results.forEach((row) => {
       console.log(row[`Tables_in_${process.env.DB_DATABASE}`]);
     });
   }
-
-  // Cierra la conexión después de realizar la consulta
-  connection.end();
 });
 
 const apiRouter = require('./router/router');
