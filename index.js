@@ -14,12 +14,11 @@ const connection = require('./services/utils/db');
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+app.use(cors({
+  origin: 'http://localhost',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,  // Esto permite el envío de cookies
+}));
 
 // Realiza la consulta a la base de datos
 connection.query('SHOW TABLES', (err, results) => {
