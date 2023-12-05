@@ -1,4 +1,5 @@
 const axios = require('axios');
+const RatesOffline = require('../../data/ratesOffline.json');
 
 /**
  * Obtiene las tasas desde una API externa.
@@ -19,10 +20,11 @@ async function getRates(res) {
     res.status(200).json(tasas);
   } catch (error) {
     // En caso de error, registra el error en la consola
-    console.error('Error al obtener tasas desde la API:', error.message);
-
+    // console.error('Error al obtener tasas desde la API:', error.message);
+    console.log('Rates: Offline ===> ' + JSON.stringify());
+    
     // Responde al cliente con un código de estado 500 y el mensaje de error
-    res.status(500).json({ error: 'Error al obtener tasas desde la API' });
+    res.status(200).json(RatesOffline);
   }
 }
 

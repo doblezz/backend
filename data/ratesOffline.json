@@ -1,0 +1,57 @@
+[
+    {
+      "currencyCode": "USD",
+      "currencyName": "Dolares Americanos",
+      "currencyFullName": "Dolares Americanos EF",
+      "instrumentCode": "EF",
+      "instrumentDescription": "Efectivo",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    },
+    {
+      "currencyCode": "USD",
+      "currencyName": "Dolares Americanos",
+      "currencyFullName": "Dolares Americanos CK",
+      "instrumentCode": "CK",
+      "instrumentDescription": "Cheque",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    },
+    {
+      "currencyCode": "EUR",
+      "currencyName": "Euros",
+      "currencyFullName": "Euros EF",
+      "instrumentCode": "EF",
+      "instrumentDescription": "Efectivo",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    },
+    {
+      "currencyCode": "CAD",
+      "currencyName": "Dolares Canadienses",
+      "currencyFullName": "Dolares Canadienses EF",
+      "instrumentCode": "EF",
+      "instrumentDescription": "Efectivo",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    },
+    {
+      "currencyCode": "CHF",
+      "currencyName": "Francos Suizos",
+      "currencyFullName": "Francos Suizos EF",
+      "instrumentCode": "EF",
+      "instrumentDescription": "Efectivo",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    },
+    {
+      "currencyCode": "GBP",
+      "currencyName": "Libras Esterlinas",
+      "currencyFullName": "Libras Esterlinas EF",
+      "instrumentCode": "EF",
+      "instrumentDescription": "Efectivo",
+      "purchaseRate": "00.0000",
+      "saleRate": "00.0000"
+    }
+  ]
+  
