@@ -1,17 +1,23 @@
 const jwt = require("jsonwebtoken");
-const util = require('util');
-const db = require("../services/utils/db");
-
-const queryAsync = util.promisify(db.query).bind(db);
+const database = require("../services/utils/database");
 
 async function login(req, res) {
   const SECRET_KEY = process.env.SECRET_JWT;
   try {
     const { username } = req.body;
 
-    const query = "SELECT * FROM company_users WHERE username = ?";
-    const results = await queryAsync(query, [username]);
+    // Conecta a la base de datos utilizando la función connectToDatabase
+    const connection = await database.connectToDatabase();
 
+    const query = "SELECT * FROM company_users WHERE username = ?";
+
+    // Utiliza la función queryDatabase para realizar la consulta
+    const results = await database.queryDatabase(connection, query, [username]);
+
+    // Cierra la conexión después de realizar la consulta
+    await database.closeDatabaseConnection(connection);
+
+    // Maneja el resultado de la consulta
     if (results.length === 0) {
       const labeledData = {
         notification: {

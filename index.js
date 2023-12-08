@@ -1,43 +1,53 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 3000;
 const cors = require('cors');
 require('dotenv').config();
 
-// Selecciona el archivo .env correspondiente según el entorno
-const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
-require('dotenv').config({ path: envFile });
+const {
+  connectToDatabase,
+  queryDatabase,
+  closeDatabaseConnection,
+} = require('./services/utils/database');
 
-const connection = require('./services/utils/db');
-
-// Middleware
-app.use(bodyParser.json());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({
+const corsOptions = {
   origin: ['http://localhost:5173', 'http://localhost:3000', 'https://quedaza.netlify.app', 'https://quezada.do/'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
-}));
-// Configuración CORS específica para la ruta /api
-app.options('/api', cors());
+  optionsSuccessStatus: 200,
+};
 
-// Realiza la consulta a la base de datos
-connection.query('SHOW TABLES', (err, results) => {
-  if (err) {
-    console.error('Error al obtener la lista de tablas:', err.message);
-  } else {
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
+app.options('/api', cors(corsOptions));
+
+// Conectar a la base de datos
+connectToDatabase()
+  .then((connection) => {
+    // Realizar consulta a la base de datos
+    return queryDatabase('SHOW TABLES');
+  })
+  .then((results) => {
+    // Procesar resultados
     results.forEach((row) => {
       console.log(row[`Tables_in_${process.env.DB_DATABASE}`]);
-    });
-  }
-});
+    })
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+  .finally(() => {
+    // Cerrar la conexión después de realizar la consulta
+    closeDatabaseConnection();
+  });
 
+// Resto de tu configuración y rutas
 const apiRouter = require('./router/router');
 app.use('/api', apiRouter);
 
-// Puedes agregar más rutas y lógica según tus necesidades.
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });

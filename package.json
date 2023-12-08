@@ -1,7 +1,9 @@
 {
   "name": "backend",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "main": "index.js",
+  "author": "Victor M. Rodriguez ~ ZIZICODE",
+  "license": "MIT",
   "proxy": "https://acqbackend.onrender.com",
   "scripts": {
     "build": "babel src --out-dir lib && netlify-lambda build",
@@ -11,10 +13,15 @@
     "uvr": "node uvr.js"
   },
   "dependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/plugin-transform-object-rest-spread": "^7.23.4",
+    "@netlify/functions": "^2.4.0",
     "axios": "^1.6.2",
     "body-parser": "^1.19.0",
     "core-js": "^3.17.3",
     "cors": "^2.8.5",
+    "cosmiconfig-typescript-loader": "^5.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^9.0.2",
@@ -23,12 +30,13 @@
     "serverless-http": "^2.7.0",
     "torrent2magnet": "^1.0.0",
     "util": "^0.12.5",
+    "uuid": "^9.0.1",
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.0",
+    "@babel/cli": "^7.23.4",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-env": "^7.23.5",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "commitlint": "^18.4.3",
