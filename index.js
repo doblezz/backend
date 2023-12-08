@@ -20,6 +20,8 @@ app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
+// Configuración CORS específica para la ruta /api
+app.options('/api', cors());
 
 // Realiza la consulta a la base de datos
 connection.query('SHOW TABLES', (err, results) => {
