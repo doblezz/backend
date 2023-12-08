@@ -10,6 +10,8 @@ const dbConfig = {
   port: process.env.DB_PORT || 3306,
 };
 
+console.log(dbConfig);
+
 // Crea y exporta la conexión a la base de datos
 const connection = mysql.createConnection(dbConfig);
 
