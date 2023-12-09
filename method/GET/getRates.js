@@ -21,7 +21,7 @@ async function getRates(res) {
   } catch (error) {
     // En caso de error, registra el error en la consola
     // console.error('Error al obtener tasas desde la API:', error.message);
-    console.log('Rates: Offline ===> ' + JSON.stringify());
+    console.log('Rates: Offline ===> ' + JSON.stringify(RatesOffline));
     
     // Responde al cliente con un código de estado 500 y el mensaje de error
     res.status(200).json(RatesOffline);
