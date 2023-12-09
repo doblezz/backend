@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const cors = require('cors');
 require('dotenv').config();
 
 const {
@@ -10,18 +9,18 @@ const {
   closeDatabaseConnection,
 } = require('./services/utils/database');
 
-const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://quedaza.netlify.app', 'https://quezada.do/'],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
-
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
-app.options('/api', cors(corsOptions));
+
+// Configurar cabeceras y CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
 
 // Conectar a la base de datos
 connectToDatabase()
@@ -33,7 +32,7 @@ connectToDatabase()
     // Procesar resultados
     results.forEach((row) => {
       console.log(row[`Tables_in_${process.env.DB_DATABASE}`]);
-    })
+    });
   })
   .catch((error) => {
     console.error(error);
